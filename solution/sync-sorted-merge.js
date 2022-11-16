@@ -1,8 +1,8 @@
 'use strict';
 
-const Heap = require('heap-js').default;
+const Heap = require('heap');
 
-const dateComparator = (a, b) => a.date.getTime() < b.date.getTime();
+const dateComparator = (a, b) => (a.date.getTime() < b.date.getTime() ? -1 : 0);
 
 // Print all entries, across all of the sources, in chronological order.
 module.exports = (logSources, printer) => {
@@ -27,6 +27,6 @@ module.exports = (logSources, printer) => {
       }
     }
   }
-
+  printer.done();
   return console.log('Sync sort complete.');
 };
