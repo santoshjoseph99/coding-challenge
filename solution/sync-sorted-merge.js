@@ -2,12 +2,11 @@
 
 const Heap = require('heap');
 
-const dateComparator = (a, b) => (a.date.getTime() < b.date.getTime() ? -1 : 0);
+const dateComparator = (a, b) => (a.date < b.date ? -1 : 0);
 
 // Print all entries, across all of the sources, in chronological order.
 module.exports = (logSources, printer) => {
   const minHeap = new Heap(dateComparator);
-  minHeap.limit = logSources.length;
 
   logSources.forEach((logSource) => {
     minHeap.push({...logSource.pop(), logSource});
